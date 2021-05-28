@@ -4,3 +4,9 @@
 <h1> Good job Didier on learning Devops, this is a check for 2min auto update</h1>
 <h3>.../...</h3>
 
+<p>Date/Time: <span id="datetime"></span></p>
+
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
