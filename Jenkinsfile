@@ -3,6 +3,10 @@ pipeline {
     tools {
     maven 'M2_HOME'
     }
+    environment {
+        registry = "ebenydihan/devop-pipeline"
+        registryCredential = 'dockerUserID'
+    }
     stages {
         stage('Build') {
             steps {
@@ -16,17 +20,12 @@ pipeline {
                 echo 'test step'
                 sh 'mvn test'
             }
-        }
-        stage('deploy') {
+        }        
+        stage('Deploy') {
             steps {
-                echo 'deploy step'
-              sleep 10
-            }
-        }
-        stage('docker') {
-            steps {
-                echo 'docker step'
-              sleep 10
+                script {
+                    docker.build registry = ":$BUILD_NUMBER"
+                }
             }
         }
     }
